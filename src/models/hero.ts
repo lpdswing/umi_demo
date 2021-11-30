@@ -67,10 +67,21 @@ const HeroModel: HeroModelType = {
                     skin_name: '恋之微风|万圣前夜|天鹅之梦|纯白花嫁|缤纷独角兽',
                 },
             ];
+            const freeheros = yield request('mock/freeheros.json', { 
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify({
+                    number: 10,
+                })
+            });
             yield put({
                 type: 'save',
                 payload: {
-                    heros: data||loaclData
+                    heros: data||loaclData,
+                    freeheros: freeheros
                 }
             })
 
