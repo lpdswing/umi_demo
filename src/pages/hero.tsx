@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './hero.less';
-import { connect, HeroModelState, ConnectProps } from 'umi';
+import { connect, HeroModelState, ConnectProps, Link } from 'umi';
 import { Col, Row, Card, Radio } from 'antd';
 import FreeHeroItem from '@/components/FreeHeroItem'
 
@@ -23,7 +23,7 @@ const heroType = [
 const Hero: FC<PageProps> = (props) => {
   let { heros = [], filterKey = 0, freeheros = [], itemHover = 0 } = props.hero;
   heros = [...heros];
-
+  console.log(props);
   const onChange = (e) => {
     console.log(e.target.value);
     props.dispatch({
@@ -79,12 +79,15 @@ const Hero: FC<PageProps> = (props) => {
       <Row>
         {heros.filter(item => (filterKey === 0 || item.hero_type === filterKey)).reverse().map((item) => (
           <Col key={item.ename} span={3} className={styles.heroitem}>
+          <Link to={`/herodetail/${item.ename}`}>
             <img
               src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${item.ename}/${item.ename}.jpg`}
               alt=""
             />
             <p>{item.cname}</p>
+          </Link>
           </Col>
+          
         ))}
       </Row>
     </div>

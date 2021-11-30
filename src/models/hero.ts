@@ -99,7 +99,7 @@ const HeroModel: HeroModelType = {
     subscriptions: {
         setup({dispatch, history}) {
             return history.listen(({pathname, query}) => {
-                if (pathname === '/hero') {
+                if (pathname === '/hero' || pathname.indexOf('/herodetail') ===0) {
                     dispatch({type: 'fetch'})
                 }
             });
